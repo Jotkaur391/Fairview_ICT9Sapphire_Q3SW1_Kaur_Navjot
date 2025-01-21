@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { font-family: sans-serif; background-color: #e0f7fa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .content-box { width: 400px; border: 2px solid #4caf50; padding: 20px; background-color: #ffffff; text-align: center; border-radius: 5px; }
+        h1 { color: #4caf50; font-size: 1.5em; margin-bottom: 10px; }
+        .currency-box { background-color: #f1f1f1; border: 1px solid #4caf50; padding: 15px; margin: 10px 0; font-size: 1.2em; }
+        button { padding: 10px 20px; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; }
+        button:hover { background-color: #388e3c; }
+        .button-container { display: flex; justify-content: center; gap: 5px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="content-box">
+        <h1>Currency Converter</h1>
+        <p>Click a button to convert</p>
+        <div class="currency-box" id="pesoAmount">100</div>
+        <p>Pesos to other currencies</p>
+        <div class="currency-box" id="convertedCurrency"></div>
+        <div class="button-container">
+            <button class="btn btn-success" onclick="convert('USD')">To Dollar</button>
+            <button class="btn btn-success" onclick="convert('EUR')">To Euro</button>
+        </div>
+        <!-- Refresh Button placed below the other buttons -->
+        <button class="btn btn-warning" onclick="reset()">Refresh</button>
+    </div>
+
+    <script>
+        const rates = { USD: 0.018, EUR: 0.017 };
+        function convert(currency) { 
+            const result = (100 * rates[currency]).toFixed(2);
+            document.getElementById('convertedCurrency').innerText = `100 Pesos = ${result} ${currency}`;
+        }
+        function reset() { document.getElementById('convertedCurrency').innerText = ''; }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
